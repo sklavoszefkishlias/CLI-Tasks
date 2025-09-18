@@ -1,19 +1,19 @@
 import json
-def add(param):
+import datetime
+def add(param,total_tasks):
+
     param=param[0:len(param)]
-    print(param)
-    jasontasks = [{"id":"1",
-                   "desription":"Buy ciggies",
+    date = str(datetime.datetime.now())
+    task = {"id":str(total_tasks + 1),
+                   "desription":param,
                    "status":"To do",
-                   "created":"exampledate",
-                   "updated":"exde"},
-                   {"id":"2",
-                   "desription":"Buy Milk",
-                   "status":"Done",
-                   "created":"exampledate2",
-                   "updated":"exde2"}
-                   ]
-    x = json.dumps(jasontasks)
-    print(x)
-x = input("cli tast")
-add(x)
+                   "created":date,
+                   "updated":date}
+
+    with open ("tasks.json",mode="r",encoding="utf-8") as write_file:
+        edit_json = json.load(write_file)
+    #print(type(edit_json))
+    edit_json.update({str(total_tasks + 1):task})
+    #print(edit_json)
+    with open ("tasks.json",mode="w",encoding="utf-8") as write_file:
+        json.dump(edit_json,write_file)
