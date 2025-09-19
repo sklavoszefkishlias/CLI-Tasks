@@ -1,6 +1,0 @@
-import json
-
-with open("tasks.json", mode="r", encoding="utf-8") as read_file:
-    x = json.load(read_file)
-print ("1")
-print(x)
