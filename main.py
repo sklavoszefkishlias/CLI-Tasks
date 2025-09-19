@@ -1,5 +1,5 @@
 import json
-from prime_functions import add
+from prime_functions import add,update,mark
 
 if __name__ == "__main__":
     empty_flag=0
@@ -15,8 +15,7 @@ if __name__ == "__main__":
         with open("tasks.json", mode="r", encoding="utf-8") as read_file:
                 tasks_data = json.load(read_file)
                 total_tasks = len(tasks_data)
-    print(total_tasks)
-
+    print(f"total tasks saved: {total_tasks}")
 
     while True:
         f_input = input("cli task ")
@@ -30,11 +29,12 @@ if __name__ == "__main__":
                 break
             elif command == "add":
                 add(parameters,total_tasks)
-            '''elif command == "update":
-                update(parameters)
+                total_tasks = total_tasks + 1
+            elif command == "update":
+                update(parameters,total_tasks)
             elif command == "mark":
-                mark(parameters)
-            elif command == "delete":
+                mark(parameters,total_tasks)
+            '''elif command == "delete":
                 delete(parameters)
             elif command =="view":
                 view(parameters)'''
