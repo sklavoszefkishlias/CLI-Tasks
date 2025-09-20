@@ -1,5 +1,5 @@
 import json
-from prime_functions import add,update,mark,delete
+from prime_functions import add,update,mark,delete,view
 from validation import validate_index,validate_mark
 if __name__ == "__main__":
     empty_flag=0
@@ -29,8 +29,12 @@ if __name__ == "__main__":
             try:
                 command , parameters = f_input.split(" ",1)
             except ValueError:
-                 print("Invalid command")
-                 continue
+                if f_input != "list":
+                    print("Invalid command")
+                    continue
+                else:
+                     parameters = "None"
+                     command = "list"
             
             if command == "add":
                 add(parameters,total_tasks)
@@ -48,8 +52,10 @@ if __name__ == "__main__":
                 update(update_index,update_description)
             elif command == "mark":
                 mark_status, mark_index = parameters.split(" ",1)
-                if validate_mark(mark_status)== 1:
+                if validate_mark(mark_status)== "Invalid":
                      continue
+                else:
+                     mark_status = validate_mark(mark_status)
                     
                 if validate_index(mark_index,total_tasks) == 1:
                      continue
@@ -64,12 +70,10 @@ if __name__ == "__main__":
                 
                 delete(parameters,total_tasks)
                 total_tasks = total_tasks - 1
+            elif command == "list":
+                 view(parameters)
             else:
                  print("Invalid command")
                  continue
-            
-            '''elif command == "view":
-                view()'''
-        
 
     print("Bye Bye")
