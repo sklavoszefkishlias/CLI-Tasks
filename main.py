@@ -18,7 +18,7 @@ if __name__ == "__main__":
     print(f"total tasks saved: {total_tasks}")
 
     while True:
-        f_input = input("cli task ")
+        f_input = input("cli tasks ")
         if f_input == "exit":
              break
         else:
