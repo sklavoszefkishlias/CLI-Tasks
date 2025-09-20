@@ -1,4 +1,6 @@
 def validate_index(index,total_tasks):
+    #Exception is for entering floats
+    #If statment are for valid int indexes
     try:
         if int(index) < 1 or int(index) > total_tasks:
             print("Invalid task index")
@@ -9,8 +11,12 @@ def validate_index(index,total_tasks):
     return 0 
 
 def validate_mark(mark):
-     if mark == "To-do" or mark == "In-progress" or mark == "Done":
-          return 0
+     if mark.lower() == "to-do":
+          return "To-do"
+     elif mark.lower() == "in-progress":
+          return "In-progress"
+     elif mark.lower() == "done":
+          return "Done"
      else:
           print("Invalid marking")
-          return 1
+          return "Invalid"
